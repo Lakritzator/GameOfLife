@@ -32,10 +32,34 @@ namespace GameOfLife.Board
         /// Create a new Cell with the mentioned offset
         /// </summary>
         /// <param name="offset">Tuple x,y</param>
+        /// <param name="boardWidth">Width of the board, used for wrapping</param>
+        /// <param name="boardHeight">Height of the board, used for wrapping</param>
         /// <returns>new Cell</returns>
-        public Cell WithOffset(Tuple<int, int> offset)
+        public Cell WithOffset(Tuple<int, int> offset, int boardWidth, int boardHeight)
         {
-            return new Cell(X + offset.Item1, Y + offset.Item2);
+            var x = X + offset.Item1;
+            var y = Y + offset.Item2;
+
+            // Wrap logic X
+            if (x < 0)
+            {
+                x = boardWidth + x % boardWidth;
+            }
+            if (x >= boardWidth)
+            {
+                x = x % boardWidth;
+            }
+
+            // Wrap logic Y
+            if (y < 0)
+            {
+                y = boardHeight + y % boardHeight;
+            }
+            if (y >= boardHeight)
+            {
+                y = y % boardHeight;
+            }
+            return new Cell(x, y);
         }
 
         /// <inheritdoc />
@@ -47,7 +71,8 @@ namespace GameOfLife.Board
             }
         }
 
-        bool IEquatable<Cell>.Equals(Cell other)
+        /// <inheritdoc />
+        public bool Equals(Cell other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -59,7 +84,7 @@ namespace GameOfLife.Board
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Cell) obj);
         }
     }

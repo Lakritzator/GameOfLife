@@ -39,6 +39,16 @@ namespace GameOfLife.Board
         public ISet<Cell> Cells { get; private set; } = new HashSet<Cell>();
 
         /// <summary>
+        /// Retrieve the neighbours of a cell
+        /// </summary>
+        /// <param name="cell">Cell</param>
+        /// <returns>IEnumerable with the neighbours</returns>
+        public IEnumerable<Cell> Neighbours(Cell cell)
+        {
+            return _offsets.Select(offset => cell.WithOffset(offset, Width, Height));
+        }
+
+        /// <summary>
         /// Create the next iteration of the board
         /// </summary>
         /// <returns>IEnumerable with the locations of the new cells</returns>
@@ -50,7 +60,7 @@ namespace GameOfLife.Board
             {
                 int neighbours = 0;
                 // Count the neighbours of the alive cell
-                foreach (var neighbourLocation in _offsets.Select(offset => aliveCell.WithOffset(offset)))
+                foreach (var neighbourLocation in Neighbours(aliveCell))
                 {
                     var isNeighbourAlive = Cells.Contains(neighbourLocation);
                     if (isNeighbourAlive)
@@ -72,7 +82,7 @@ namespace GameOfLife.Board
             // Loop over the unique dead cells which have exactly 3 neighbours which are alive
             foreach (var deadCellWithNeighbour in deadNeighbours)
             {
-                if (_offsets.Select(offset => deadCellWithNeighbour.WithOffset(offset)).Where(Cells.Contains).Take(4).Count() == 3)
+                if (Neighbours(deadCellWithNeighbour).Where(Cells.Contains).Take(4).Count() == 3)
                 {
                     yield return deadCellWithNeighbour;
                 }
