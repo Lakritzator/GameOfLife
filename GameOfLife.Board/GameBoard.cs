@@ -7,7 +7,7 @@ namespace GameOfLife.Board
     /// <summary>
     /// The game of life board
     /// </summary>
-    public class Board
+    public class GameBoard
     {
         // Offsets for the locations
         private readonly IEnumerable<Tuple<int, int>> _offsets = new List<Tuple<int, int>>
@@ -92,8 +92,8 @@ namespace GameOfLife.Board
         /// <summary>
         /// Set the board with the new cells
         /// </summary>
-        /// <param name="cells"></param>
-        public void UpdateBoard(IEnumerable<Cell> cells)
+        /// <param name="cells">IEnumerable with the new cells</param>
+        public void SetBoardContent(IEnumerable<Cell> cells)
         {
             Cells = new HashSet<Cell>(cells);
         }

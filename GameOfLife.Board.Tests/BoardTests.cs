@@ -9,11 +9,14 @@ namespace GameOfLife.Board.Tests
         public void TestStable()
         {
             // Arrange
-            var board = new Board();
-            board.Cells.Add(new Cell(10, 10));
-            board.Cells.Add(new Cell(11, 10));
-            board.Cells.Add(new Cell(12, 10));
-
+            var board = new GameBoard();
+            var stable = new Cells
+            {
+                {10, 10},
+                {11, 10},
+                {12, 10}
+            };
+            board.SetBoardContent(stable);
             // Act
             var newCell = board.NextIteration().First();
 
@@ -25,10 +28,16 @@ namespace GameOfLife.Board.Tests
         public void TestBirth()
         {
             // Arrange
-            var board = new Board();
-            board.Cells.Add(new Cell(10, 10));
-            board.Cells.Add(new Cell(11, 9));
-            board.Cells.Add(new Cell(12, 10));
+            var board = new GameBoard();
+
+            var birth = new Cells
+            {
+                {10, 10},
+                {11, 9},
+                {12, 10}
+            };
+
+            board.SetBoardContent(birth);
 
             // Act
             var newCells = board.NextIteration();
@@ -41,7 +50,7 @@ namespace GameOfLife.Board.Tests
         public void TestCellOffset()
         {
             // Arrange
-            var board = new Board
+            var board = new GameBoard
             {
                 Width = 100,
                 Height = 100
@@ -78,10 +87,15 @@ namespace GameOfLife.Board.Tests
         public void TestBoardWrapping_Board()
         {
             // Arrange
-            var board = new Board();
-            board.Cells.Add(new Cell(0, 0));
-            board.Cells.Add(new Cell(98, 0));
-            board.Cells.Add(new Cell(99, 0));
+            var board = new GameBoard();
+
+            var wrapping = new Cells
+            {
+                {0, 0},
+                {98, 0},
+                {99, 0}
+            };
+            board.SetBoardContent(wrapping);
 
             // Act
             var cells = board.NextIteration().ToList();

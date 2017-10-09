@@ -5,17 +5,17 @@ namespace GameOfLife.Board
     /// <summary>
     /// Cell
     /// </summary>
-    public class Cell : IEquatable<Cell>
+    public sealed class Cell : IEquatable<Cell>
     {
         /// <summary>
         /// X part of the coordinate
         /// </summary>
-        public int X { get; set; }
+        public int X { get; }
 
         /// <summary>
         /// Y part of the coordinate
         /// </summary>
-        public int Y { get; set; }
+        public int Y { get; }
 
         /// <summary>
         /// Create a Cell

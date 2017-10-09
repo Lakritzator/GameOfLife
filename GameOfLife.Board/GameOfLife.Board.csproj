@@ -43,7 +43,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
+    <Compile Include="CellFactory.cs" />
+    <Compile Include="GameBoard.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

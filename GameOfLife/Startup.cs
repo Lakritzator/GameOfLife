@@ -17,7 +17,7 @@ namespace GameOfLife
             Start();
         }
 
-        public static void Start()
+        private static void Start()
         {
 #if DEBUG
             LogSettings.RegisterDefaultLogger<DebugLogger>(LogLevels.Verbose);
@@ -26,7 +26,7 @@ namespace GameOfLife
             LogSettings.RegisterDefaultLogger<ForwardingLogger>(LogLevels.Verbose);
 #endif
 
-            var application = new Dapplication("GetMyLogs", "a5f6aa70-b899-4691-a9ac-94f86b7eb555")
+            var application = new Dapplication("GameOfLife", "DFC9D16F-9BE6-4C34-B161-ECA67E6E1855")
             {
                 ShutdownMode = ShutdownMode.OnMainWindowClose
             };
