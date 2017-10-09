@@ -68,7 +68,6 @@ namespace GameOfLife.Board.Tests
             // 0,0 offset 1, -1
             Assert.Contains(new Cell(1, 99), cells);
 
-
             // 2nd row
             // 0,0 offset -1, 0
             Assert.Contains(new Cell(99, 0), cells);
@@ -83,6 +82,7 @@ namespace GameOfLife.Board.Tests
             // 0,0 offset 1, 1
             Assert.Contains(new Cell(1, 1), cells);
         }
+
         [Fact]
         public void TestBoardWrapping_Board()
         {

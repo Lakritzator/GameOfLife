@@ -35,12 +35,6 @@ namespace GameOfLife.Ui.ViewModels
                 Width = 50
             };
 
-            var blinker = new Cells
-            {
-                {10, 10},
-                {11, 10},
-                {12, 10}
-            };
             var acorn = new Cells
             {
                 {11, 8},
@@ -76,7 +70,7 @@ namespace GameOfLife.Ui.ViewModels
                 foreach (var cell in _gameBoard.Cells)
                 {
                     writeableBitmap.SetPixel(cell.X, cell.Y, Colors.Red);
-                };
+                }
             }
             return writeableBitmap;
         }
