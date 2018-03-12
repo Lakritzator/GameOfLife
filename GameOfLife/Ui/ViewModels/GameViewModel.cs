@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -64,15 +65,15 @@ namespace GameOfLife.Ui.ViewModels
         /// <returns>BitmapSource</returns>
         private BitmapSource Draw()
         {
-            var writeableBitmap = BitmapFactory.New(_gameBoard.Width, _gameBoard.Height);
-            using (writeableBitmap.GetBitmapContext())
+            WriteableBitmap writeableBmp = BitmapFactory.New(_gameBoard.Width, _gameBoard.Height);
+            using (writeableBmp.GetBitmapContext())
             {
                 foreach (var cell in _gameBoard.Cells)
                 {
-                    writeableBitmap.SetPixel(cell.X, cell.Y, Colors.Red);
+                    writeableBmp.SetPixel(cell.X, cell.Y, Colors.Red);
                 }
             }
-            return writeableBitmap;
+            return writeableBmp;
         }
 
         /// <summary>
