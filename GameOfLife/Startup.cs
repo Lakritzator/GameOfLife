@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Dapplo.Addons.Bootstrapper;
 using Dapplo.CaliburnMicro.Dapp;
 using Dapplo.Log;
 using Dapplo.Log.Loggers;
@@ -25,13 +26,15 @@ namespace GameOfLife
             // Register a default logger which will forward all log statements to the next default logger, this way nothing is missed.
             LogSettings.RegisterDefaultLogger<ForwardingLogger>(LogLevels.Verbose);
 #endif
+            var applicationConfig = ApplicationConfig.Create()
+                .WithApplicationName("GameOfLife")
+                .WithAssemblyNames("Dapplo.Addons.Config")
+                .WithMutex("DFC9D16F-9BE6-4C34-B161-ECA67E6E1855");
 
-            var application = new Dapplication("GameOfLife", "DFC9D16F-9BE6-4C34-B161-ECA67E6E1855")
+            var application = new Dapplication(applicationConfig)
             {
-                ShutdownMode = ShutdownMode.OnMainWindowClose
+                ShutdownMode = ShutdownMode.OnLastWindowClose
             };
-            application.Bootstrapper.FindAndLoadAssemblies("Dapplo.CaliburnMicro*");
-
             application.Run();
         }
     }
