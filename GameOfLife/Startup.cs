@@ -26,10 +26,13 @@ namespace GameOfLife
             // Register a default logger which will forward all log statements to the next default logger, this way nothing is missed.
             LogSettings.RegisterDefaultLogger<ForwardingLogger>(LogLevels.Verbose);
 #endif
-            var applicationConfig = ApplicationConfig.Create()
+            var applicationConfig = ApplicationConfigBuilder
+                .Create()
                 .WithApplicationName("GameOfLife")
-                .WithAssemblyNames("Dapplo.Addons.Config")
-                .WithMutex("DFC9D16F-9BE6-4C34-B161-ECA67E6E1855");
+                .WithConfigSupport()
+                .WithCaliburnMicro()
+                .WithMutex("DFC9D16F-9BE6-4C34-B161-ECA67E6E1855")
+                .BuildApplicationConfig();
 
             var application = new Dapplication(applicationConfig)
             {
