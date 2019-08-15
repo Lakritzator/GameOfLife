@@ -29,8 +29,6 @@ namespace GameOfLife
             var applicationConfig = ApplicationConfigBuilder
                 .Create()
                 .WithApplicationName("GameOfLife")
-                .WithConfigSupport()
-                .WithCaliburnMicro()
                 .WithMutex("DFC9D16F-9BE6-4C34-B161-ECA67E6E1855")
                 .BuildApplicationConfig();
 
