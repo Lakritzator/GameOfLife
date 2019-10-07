@@ -82,7 +82,7 @@
       <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="Dapplo.CaliburnMicro.Dapp">
-      <Version>2.0.2</Version>
+      <Version>2.1.3</Version>
     </PackageReference>
     <PackageReference Include="Dapplo.CaliburnMicro.Translations">
       <Version>2.0.2</Version>
