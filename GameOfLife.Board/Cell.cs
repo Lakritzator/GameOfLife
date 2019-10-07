@@ -47,7 +47,7 @@ namespace GameOfLife.Board
             }
             if (x >= boardWidth)
             {
-                x = x % boardWidth;
+                x %= boardWidth;
             }
 
             // Wrap logic Y
@@ -57,7 +57,7 @@ namespace GameOfLife.Board
             }
             if (y >= boardHeight)
             {
-                y = y % boardHeight;
+                y %= boardHeight;
             }
             return new Cell(x, y);
         }
