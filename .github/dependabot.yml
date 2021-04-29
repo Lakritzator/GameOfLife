@@ -1,0 +1,24 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Nerdbank.GitVersioning
+    versions:
+    - 3.4.190
+  - dependency-name: Dapplo.CaliburnMicro.Configuration
+    versions:
+    - 2.1.18
+    - 2.1.19
+  - dependency-name: Dapplo.CaliburnMicro.Translations
+    versions:
+    - 2.1.18
+    - 2.1.19
+  - dependency-name: Dapplo.CaliburnMicro.Dapp
+    versions:
+    - 2.1.18
+    - 2.1.19
